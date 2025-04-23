@@ -1,6 +1,13 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
+
+app.get("/download", (req, res) => {
+  const file = path.join(__dirname, "public", "example.txt");
+  res.attachment(file);
+  res.sendFile(file);
+});
 
 app.get("/", (req, res) => {
   res.send(`
